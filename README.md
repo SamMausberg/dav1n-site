@@ -8,7 +8,7 @@ The deployable website lives in `dist/`.
 ## Local preview
 
 ```sh
-python3 -m http.server 4173 --directory dist
+python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 ```
 
 Visit http://localhost:4173. Keep the site on HTTP(S); Twitch embeds cannot run from a local file URL.
@@ -53,9 +53,10 @@ These are actual public Twitch clip thumbnails, not generated portraits:
 
 Twitch embed reference: https://dev.twitch.tv/docs/embed/video-and-clips/
 
-## Hosting
+## Hosting preference
 
-This repository contains all deployable static files. The `.openai/hosting.json`
-manifest identifies the private Sites preview. It contains no credentials. The
-same `dist/` directory can be served by any static host over HTTPS; no API keys,
-server runtime, npm install or build are required.
+Run this project on localhost. Do not publish to ChatGPT Sites or another hosting
+provider unless explicitly requested. GitHub stores the source only.
+
+The site is plain static files in `dist/`; no hosting service, API keys, npm install
+or build step are needed for the local preview.
