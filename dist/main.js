@@ -3,33 +3,40 @@
 const channel = 'dav1n';
 const email = 'business@dav1n.com';
 const stage = document.querySelector('#stream-stage');
-const panel = document.querySelector('#watch-panel');
 const mount = document.querySelector('#player-mount');
 const status = document.querySelector('#player-status');
+const photoCredit = document.querySelector('#photo-credit');
+const closeButton = document.querySelector('#close-player');
 const twitchLink = document.querySelector('#watch-button');
 const playButton = document.createElement('button');
 playButton.type = 'button';
 playButton.className = 'watch-button';
 playButton.id = 'play-stream';
 playButton.setAttribute('aria-controls', 'player-mount');
-playButton.innerHTML = '<span class="play-symbol" aria-hidden="true">▶</span> Watch here';
+playButton.innerHTML = '<span class="play-symbol" aria-hidden="true">▶</span> Watch stream';
 
-// Twitch requires at least 400 × 300 pixels. Narrow screens use the direct link.
-// No third-party scripts or players load until the visitor chooses to watch.
+function closePlayer(restoreFocus = false) {
+  mount.replaceChildren();
+  mount.hidden = true;
+  closeButton.hidden = true;
+  photoCredit.hidden = false;
+  stage.classList.remove('is-playing');
+  status.textContent = 'Player closed.';
+  if (restoreFocus) {
+    (playButton.isConnected ? playButton : twitchLink).focus();
+  }
+}
+
+// Twitch requires a 400 × 300 pixel player. Keep a working direct link below
+// that width, including when the browser is resized during playback.
 function syncPlayerSize() {
   const canEmbed = stage.clientWidth >= 400 && /^https?:$/.test(location.protocol);
   if (canEmbed) {
     if (twitchLink.isConnected) twitchLink.replaceWith(playButton);
-    if (!mount.childElementCount) status.textContent = 'Twitch / dav1n';
   } else {
+    const hadPlayerFocus = mount.contains(document.activeElement) || document.activeElement === closeButton;
     if (playButton.isConnected) playButton.replaceWith(twitchLink);
-    if (mount.childElementCount) {
-      mount.replaceChildren();
-      mount.hidden = true;
-      panel.hidden = false;
-      stage.classList.remove('is-playing');
-    }
-    status.textContent = 'Watch the stream on Twitch.';
+    if (mount.childElementCount) closePlayer(hadPlayerFocus);
   }
 }
 
@@ -50,12 +57,14 @@ playButton.addEventListener('click', () => {
   player.referrerPolicy = 'strict-origin-when-cross-origin';
   mount.replaceChildren(player);
   mount.hidden = false;
-  panel.hidden = true;
+  closeButton.hidden = false;
+  photoCredit.hidden = true;
   stage.classList.add('is-playing');
-  status.textContent = 'Player not loading? Open Twitch.';
+  status.textContent = 'Twitch player opened. You can also use the Open Twitch link.';
   player.focus();
 });
 
+closeButton.addEventListener('click', () => closePlayer(true));
 syncPlayerSize();
 if ('ResizeObserver' in window) new ResizeObserver(syncPlayerSize).observe(stage);
 else window.addEventListener('resize', syncPlayerSize);
