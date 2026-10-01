@@ -20,6 +20,7 @@ function syncPlayerSize() {
   const canEmbed = stage.clientWidth >= 400 && /^https?:$/.test(location.protocol);
   if (canEmbed) {
     if (twitchLink.isConnected) twitchLink.replaceWith(playButton);
+    if (!mount.childElementCount) status.textContent = 'Twitch / dav1n';
   } else {
     if (playButton.isConnected) playButton.replaceWith(twitchLink);
     if (mount.childElementCount) {

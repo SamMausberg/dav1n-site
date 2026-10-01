@@ -26,3 +26,36 @@ Business email and social links were checked against the public Twitch profile a
 - X: https://x.com/dav1n_
 
 Edit `dist/index.html` to update content and `dist/styles.css` to adjust the design.
+
+## Design and behavior
+
+No navbar. The page opens on the streamer and watch control, then community links,
+two real stream clips and the business address. Typography uses locally hosted
+Barlow Condensed and IBM Plex Mono; their OFL licenses are included with the fonts.
+
+The player loads only after a click and uses the current hostname as Twitch's
+required `parent`. At widths below Twitch's 400px minimum, the control opens the
+channel directly. Resizing below that limit removes an active player. There is no
+invented live indicator, schedule or viewer count. Twitch controls its own stream,
+offline, advertising and playback states. Clip titles and the short bio are copied
+from the channel; “masters peak (XD)” is the creator's self-description.
+
+The copy control uses the browser clipboard API, gives success/failure feedback,
+and is omitted when unsupported. Email and external links work without JavaScript.
+
+## Image sources
+
+These are actual public Twitch clip thumbnails, not generated portraits:
+
+- Stream portrait: https://clips.twitch.tv/SpinelessBloodyVultureNinjaGrumpy-eWNrd976COJJmxdo
+- Elden Ring: https://clips.twitch.tv/CrypticAcceptableGazelleDeIlluminati-pQF-CeNT_CXLttLq
+- Inventory: https://clips.twitch.tv/GiantHomelyBatteryStrawBeary-hv_jfi3acVNC74Km
+
+Twitch embed reference: https://dev.twitch.tv/docs/embed/video-and-clips/
+
+## Hosting
+
+This repository contains all deployable static files. The `.openai/hosting.json`
+manifest identifies the private Sites preview. It contains no credentials. The
+same `dist/` directory can be served by any static host over HTTPS; no API keys,
+server runtime, npm install or build are required.
