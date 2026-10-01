@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src https://player.twitch.tv; connect-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="theme-color" content="#101113">
   <meta name="description" content="Watch dav1n on Twitch. League of Legends, variety, and the community. Business inquiries: business@dav1n.com.">
   <meta property="og:title" content="dav1n — Twitch & links">
@@ -28,7 +29,7 @@
     <section id="stream" aria-labelledby="stream-heading">
       <div class="intro">
         <div><p class="eyebrow">League of Legends & variety</p><h1 id="stream-heading">dav<span>1</span>n</h1></div>
-        <p class="intro-note">Find me on Twitch.<br>Stay for the next game.</p>
+        <a class="intro-note" href="https://www.twitch.tv/dav1n" target="_blank" rel="noopener noreferrer">Live streams on Twitch.<br><span>Come hang out.</span></a>
       </div>
       <div class="stream-stage" id="stream-stage">
         <img class="channel-art" src="./assets/channel-banner.jpg" width="1440" height="480" alt="dav1n's blue and black channel artwork featuring League of Legends and Levi Ackerman" fetchpriority="high">
@@ -39,7 +40,7 @@
         <div id="player-mount" hidden></div>
       </div>
       <div class="stream-bar">
-        <p id="player-status" role="status">The stream lives here.</p>
+        <p id="player-status" role="status">Press play. See you in chat.</p>
         <div><a href="https://www.twitch.tv/dav1n/videos" target="_blank" rel="noopener noreferrer">Past broadcasts</a><a href="https://www.twitch.tv/dav1n/clips?filter=clips&range=all" target="_blank" rel="noopener noreferrer">Clips</a><a href="https://www.twitch.tv/dav1n" target="_blank" rel="noopener noreferrer">Open Twitch</a></div>
       </div>
     </section>
