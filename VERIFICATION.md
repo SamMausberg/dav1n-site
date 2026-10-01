@@ -1,12 +1,12 @@
 # Verification — October 1, 2026
 
-Reviewed the refined black design in Chromium with Playwright against the local
+Reviewed the simplified black design in Chromium with Playwright against the local
 HTTP preview, including rendered desktop and phone screenshots.
 
 ## Layout and readability
 
-- No navbar. The stream is the primary surface; the profile, Discord, socials and
-  business email form the supporting column on desktop.
+- No navbar or sidebar. A single column contains the small name, stream, social
+  links, business email and two secondary clip previews.
 - Watch control, Discord and email are visible in the first desktop viewport.
 - No horizontal overflow at 320, 390, 480, 768, 900, 1024, 1440 and 1920 pixels.
 - All source images load. No third-party requests occur before starting a player.
@@ -44,7 +44,7 @@ validity was not independently established. No community join or message was sen
 
 Clips are a curated import of real Twitch thumbnails, titles, durations and links.
 They do not automatically refresh. Playback opens on Twitch; this site does not
-redistribute video files. The short bio is the creator's own description.
+redistribute video files. The former bio has been removed.
 
 This iteration runs on localhost and is committed to the private GitHub source
 repository. It was not published to ChatGPT Sites or another hosting service.

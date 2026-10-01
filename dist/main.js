@@ -5,7 +5,6 @@ const email = 'business@dav1n.com';
 const stage = document.querySelector('#stream-stage');
 const mount = document.querySelector('#player-mount');
 const status = document.querySelector('#player-status');
-const photoCredit = document.querySelector('#photo-credit');
 const closeButton = document.querySelector('#close-player');
 const twitchLink = document.querySelector('#watch-button');
 const playButton = document.createElement('button');
@@ -19,7 +18,6 @@ function closePlayer(restoreFocus = false) {
   mount.replaceChildren();
   mount.hidden = true;
   closeButton.hidden = true;
-  photoCredit.hidden = false;
   stage.classList.remove('is-playing');
   status.textContent = 'Player closed.';
   if (restoreFocus) {
@@ -58,7 +56,6 @@ playButton.addEventListener('click', () => {
   mount.replaceChildren(player);
   mount.hidden = false;
   closeButton.hidden = false;
-  photoCredit.hidden = true;
   stage.classList.add('is-playing');
   status.textContent = 'Twitch player opened. You can also use the Open Twitch link.';
   player.focus();

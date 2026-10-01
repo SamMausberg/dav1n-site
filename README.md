@@ -29,21 +29,17 @@ Edit `dist/index.html` to update content and `dist/styles.css` to adjust the des
 
 ## Design and behavior
 
-The layout is built around watching, finding the community and making a business
-inquiry. On desktop, a compact profile, Discord, social links and email sit beside
-the main player; on phones, the stream comes immediately after the profile.
-Two real clips sit below. There is no navbar, decorative dashboard or repeated
-marketing copy. Black surfaces, warm play controls and locally hosted Barlow
-Condensed and IBM Plex Mono carry the visual identity. Font OFL licenses are
-included with the assets.
+A restrained single column: small name, stream, plain social and business links,
+then two compact clip previews. No navbar, sidebar, bio, oversized heading or
+large contact block. The black background and locally hosted Barlow Condensed
+and IBM Plex Mono remain. Font OFL licenses are included with the assets.
 
 The player loads only after a click and uses the current hostname as Twitch's
 required `parent`. At widths below Twitch's 400px minimum, the control opens the
 channel directly. Closing the player removes the iframe and restores focus to the
 watch button; resizing below the minimum switches back to the direct link. There is no
 invented live indicator, schedule or viewer count. Twitch controls its own stream,
-offline, advertising and playback states. Clip titles and the short bio are copied
-from the channel; “masters peak (XD)” is the creator's self-description.
+offline, advertising and playback states. Clip titles are copied from the channel.
 
 The copy control uses the browser clipboard API, gives success/failure feedback,
 and is omitted when unsupported. Email and external links work without JavaScript.

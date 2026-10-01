@@ -6,3 +6,5 @@
 - Continue the authorized incremental commits and pushes to the private GitHub
   repository. A GitHub push is not authorization to deploy the website.
 - Preserve the black background, distinctive type, real stream imagery and no-navbar layout.
+- Favor a restrained single-column page. Keep the two clip previews small and
+  secondary; avoid adding a sidebar, bio, oversized headings or contact block.
