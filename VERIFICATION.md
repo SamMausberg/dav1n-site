@@ -1,34 +1,50 @@
 # Verification — October 1, 2026
 
-Validated the final black design in Chromium with Playwright against the local
-HTTP preview. No navbar. Fonts and image assets are served from this repository.
+Reviewed the refined black design in Chromium with Playwright against the local
+HTTP preview, including rendered desktop and phone screenshots.
 
-- No horizontal overflow at 320, 390, 650, 768, 1024, 1440 and 1920 pixels.
-- All three source images load at those widths.
-- Automated axe WCAG 2 A/AA and WCAG 2.1 AA checks reported zero violations on
-  the page at desktop and phone sizes. This is not a full accessibility audit.
-- Keyboard skip link focuses the stream section.
-- No third-party requests occur before the visitor starts the player.
+## Layout and readability
+
+- No navbar. The stream is the primary surface; the profile, Discord, socials and
+  business email form the supporting column on desktop.
+- Watch control, Discord and email are visible in the first desktop viewport.
+- No horizontal overflow at 320, 390, 480, 768, 900, 1024, 1440 and 1920 pixels.
+- All source images load. No third-party requests occur before starting a player.
+- Text enlarged to 200% on a phone reflows without horizontal scrolling. The
+  email can break at its domain boundary, and the clip heading/link wrap.
+- Reduced motion disables smooth scrolling. No decorative animation is used.
+
+## Accessibility and interactions
+
+- Axe checks using WCAG 2 A/AA, 2.1 AA and 2.2 AA tags found no violations on the
+  desktop, phone or focused skip link. This is not a full accessibility audit.
+- The check caught an undersized email target; it now has a 44px minimum height.
+- Keyboard skip link focuses the stream section with visible contrast.
+- Copy-email succeeds with the correct address and gives honest failure feedback
+  when clipboard access is denied.
 - The player receives the current hostname as its `parent` and `dav1n` as channel.
-  Twitch loaded its player and an ad break in the browser test. Sustained live
-  video/audio playback and every device/browser were not verified.
-- The active player is removed when the viewport becomes too narrow for Twitch's
-  400px minimum; the direct channel link is restored. This test caught and fixed
-  an aspect-ratio/min-height sizing issue.
-- Copy-email succeeds with the correct address and gives honest feedback when
-  clipboard permission is denied.
-- With JavaScript disabled, Twitch, clip, social and email links remain available.
+  Twitch loaded its player and an ad break during the test. Sustained live audio
+  and video and every browser/device were not verified.
+- Close player removes the iframe and restores keyboard focus to Watch stream.
+- Narrowing the viewport removes the active player, restores the direct channel
+  link, and moves focus from the removed player to the replacement control.
+- Without JavaScript, Twitch, clip, social and email links remain available.
+- All five social destinations remain present.
 - `node --check dist/main.js` passes.
 
-Twitch emitted a keyboard-layout permission warning inside its own player during
+Twitch emitted a keyboard-layout permission warning inside its player during
 playback testing. The local page had no script errors before loading Twitch.
 Twitch controls player availability, advertising, login and playback behavior.
 
-Contact details and social destinations were copied from the channel's public
-Twitch profile. The Discord API declined an automated invite-validation request
-(HTTP 403); this does not establish whether the invite is expired. No message or
-join action was sent to the community.
+## Content and hosting
 
-Clips are a curated import of actual Twitch thumbnails, titles, durations and
-links. This version does not automatically refresh the selection. Clip playback
-opens on Twitch; no video files are redistributed by the site.
+Contact details and social destinations were copied from the public Twitch
+profile. An earlier Discord API validation request returned HTTP 403, so invite
+validity was not independently established. No community join or message was sent.
+
+Clips are a curated import of real Twitch thumbnails, titles, durations and links.
+They do not automatically refresh. Playback opens on Twitch; this site does not
+redistribute video files. The short bio is the creator's own description.
+
+This iteration runs on localhost and is committed to the private GitHub source
+repository. It was not published to ChatGPT Sites or another hosting service.
