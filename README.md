@@ -15,7 +15,7 @@ Visit http://localhost:4173. Keep the site on HTTP(S); Twitch embeds cannot run 
 
 ## Content
 
-Business email and social links were checked against the public Twitch profile and About panels on October 1, 2026. The channel artwork is copied from that profile for this website. Artwork and third-party marks remain the property of their respective owners.
+Business email and social links were checked against the public Twitch profile and About panels on October 1, 2026. The images are original stream thumbnails imported from Twitch for this website. Artwork and third-party marks remain the property of their respective owners.
 
 - Business: business@dav1n.com
 - Twitch: https://www.twitch.tv/dav1n
